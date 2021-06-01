@@ -1,19 +1,49 @@
+{% include 'header.html' %} 
+<br>
+{% with messages = get_flashed_messages() %}
+
+{% if messages %}
+    <div class="alert alert-danger" role="alert">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% endwith %}
+
+<br>
 <form action="/store" method="POST" enctype="multipart/form-data">
 
-    Nomre:
-    <input type="text" name="txtNombre" id="textNombre">
-    <br>
+    <div class="card">
+        <div class="card-header">
+            Ingresar Empleado
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Datos del Empleado</h4>
 
-    Correo:
-    <input type="text" name="txtCorreo" id="textCorreo">
-    <br>
+            <div class="form-group">
+              <label for="txtNombre">Nombre:</label>
+              <input type="text" name="txtNombre" id="txtNombre" class="form-control" placeholder="" aria-describedby="helpId">
+            </div>
 
-    Foto:
-    <input type="file" name="txtFoto" id="textFoto">
-    <br>
+            <div class="form-group">
+                <label for="txtCorreo">Correo:</label>
+                <input type="text" name="txtCorreo" id="txtCorreo" class="form-control" placeholder="" aria-describedby="helpId">
+            </div>
 
-    <input type="submit" value="Agregar">
+            <div class="form-group">
+                <label for="txtFoto">Foto:</label>
+                <input type="file" name="txtFoto" id="txtFoto" class="form-control" >
+                
+            </div>
 
-
-
+            <div class="form-group">
+                <input type="submit" class= "btn btn-success" value="Agregar">
+                <a href="{{url_for('index')}}" class="btn btn-primary">Regresar</a>
+            </div>            
+        </div>
+    </div>
 </form>
+
+{% include 'footer.html' %}
